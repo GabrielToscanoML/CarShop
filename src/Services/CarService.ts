@@ -4,19 +4,7 @@ import CarsODM from '../Models/CarsODM';
 
 class CarService {
   private createCarDomain(car: ICar | null): Car | null {
-    if (car) {
-      return new Car(
-        car,
-        // car.model,
-        // car.year,
-        // car.color,
-        // car.buyValue,
-        // car.doorsQty,
-        // car.seatsQty,
-        // car.status,
-        // car.id,
-      );
-    }
+    if (car) return new Car(car);
     return null;
   }
 
@@ -24,6 +12,19 @@ class CarService {
     const carsODM = new CarsODM();
     const newCar = await carsODM.create(car);
     return this.createCarDomain(newCar);
+  }
+
+  public async getAllCars() {
+    const carsODM = new CarsODM();
+    const allCars = await carsODM.find();
+    const result = allCars.map((car: ICar) => this.createCarDomain(car));
+    return result;
+  }
+
+  public async getCarByID(id: string) {
+    const carsODM = new CarsODM();
+    const car = await carsODM.findOne(id);
+    return this.createCarDomain(car);
   }
 }
 

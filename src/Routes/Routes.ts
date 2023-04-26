@@ -1,11 +1,21 @@
 import { Router } from 'express';
-import CarsController from '../Controllers/CarController';
+import CarController from '../Controllers/CarController';
 
 const routes = Router();
 
 routes.post(
   '/cars',
-  (req, res, next) => new CarsController(req, res, next).create(),
+  (req, res, next) => new CarController(req, res, next).create(),
+);
+
+routes.get(
+  '/cars',
+  (req, res, next) => new CarController(req, res, next).find(),
+);
+
+routes.get(
+  '/cars/:id',
+  (req, res, next) => new CarController(req, res, next).findById(),
 );
 
 export default routes;
