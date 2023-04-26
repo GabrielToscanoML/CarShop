@@ -1,4 +1,4 @@
-export default interface ICar {
+export interface ICar {
   id?: string;
   model: string;
   year: number;
