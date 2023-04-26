@@ -1,4 +1,4 @@
-import ICar from '../Interfaces';
+import ICar from '../Interfaces/ICar';
 
 class Car {
   protected id: string | undefined;

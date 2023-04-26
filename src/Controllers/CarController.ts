@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import ICar from '../Interfaces';
+import ICar from '../Interfaces/ICar';
 // import { ICar } from '../Interfaces';
 import CarService from '../Services/CarService';
 

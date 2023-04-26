@@ -1,5 +1,5 @@
 import { Model, Schema, model, models } from 'mongoose';
-import ICar from '../Interfaces';
+import ICar from '../Interfaces/ICar';
 
 export default class CarsODM {
   private schema: Schema;
