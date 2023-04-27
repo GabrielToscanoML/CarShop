@@ -1,6 +1,6 @@
 import { Model, Schema, UpdateQuery, model, models } from 'mongoose';
 
-export default class AbstractODM<T> {
+export default abstract class AbstractODM<T> {
   private schema: Schema;
   private model: Model<T>;
   private modelName: string;
