@@ -8,7 +8,7 @@ export default class MotosODM extends AbstractODM<IMotoCycle> {
       model: { type: String, required: true },
       year: { type: Number, required: true },
       color: { type: String, required: true },
-      status: { type: Boolean, required: true },
+      status: { type: Boolean, default: false },
       buyValue: { type: Number, required: true },
       category: { type: String, required: true },
       engineCapacity: { type: Number, required: true },
