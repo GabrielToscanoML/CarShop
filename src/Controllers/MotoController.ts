@@ -22,8 +22,8 @@ class MotoController {
       color: this.req.body.color,
       status: this.req.body.status,
       buyValue: this.req.body.buyValue,
-      category: this.req.body.doorsQty,
-      engineCapacity: this.req.body.seatsQty,
+      category: this.req.body.category,
+      engineCapacity: this.req.body.engineCapacity,
     };
 
     try {
@@ -37,7 +37,6 @@ class MotoController {
   public async find() {
     try {
       const allMotos = await this.service.getAllMotos();
-      // console.log('RESULTADO', allMotos);
       return this.res.status(200).json(allMotos);
     } catch (error) {
       this.next(error);
