@@ -1,43 +1,31 @@
-import { Model, Schema, model, models } from 'mongoose';
-import IVehicle from '../Interfaces/IVehicle';
+import { Model, Schema, UpdateQuery, model, models } from 'mongoose';
 
-export default class VehiclesODM {
+export default class AbstractODM<T> {
   private schema: Schema;
-  private model: Model<IVehicle>;
+  private model: Model<T>;
+  private modelName: string;
 
-  constructor() {
-    this.schema = new Schema<IVehicle>({
-      model: { type: String, required: true },
-      year: { type: Number, required: true },
-      color: { type: String, required: true },
-      status: { type: Boolean, required: true },
-      buyValue: { type: Number, required: true },
-    }, { versionKey: false });
-    this.model = models.Vehicles || model('Vehicles', this.schema);
+  constructor(schema: Schema, modelName: string) {
+    this.schema = schema;
+    this.modelName = modelName;
+    this.model = models[this.modelName] || model(modelName, this.schema);
   }
 
-  // public async create(cars: IVehicle): Promise<IVehicle> {
-  //   if (cars.status === undefined) {
-  //     const newCar = {
-  //       ...cars,
-  //       status: false,
-  //     };
-  //     return this.model.create({ ...newCar });
-  //   }
-  //   return this.model.create({ ...cars });
-  // }
+  public async create(vehicle: T): Promise<T> {
+    return this.model.create({ ...vehicle });
+  }
 
-  // public async find(): Promise<ICar[]> {
-  //   return this.model.find();
-  // }
+  public async find(): Promise<T[]> {
+    return this.model.find();
+  }
 
-  // public async findOne(param: string): Promise<ICar | null> {
-  //   return this.model.findOne({ _id: param });
-  // }
-  // public async updateById(id: string, body: ICar): Promise<ICar | null> {
-  //   return this.model.findByIdAndUpdate(
-  //     { _id: id },
-  //     { ...body } as UpdateQuery<ICar>,
-  //   );
-  // }
+  public async findOne(id: string): Promise<T | null> {
+    return this.model.findOne({ _id: id });
+  }
+  public async updateById(id: string, body: Partial<T>): Promise<T | null> {
+    return this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...body } as UpdateQuery<T>,
+    );
+  }
 }
