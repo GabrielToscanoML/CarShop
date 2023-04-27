@@ -36,7 +36,8 @@ class MotoController {
 
   public async find() {
     try {
-      const allMotos = await this.service.getAllMotos;
+      const allMotos = await this.service.getAllMotos();
+      // console.log('RESULTADO', allMotos);
       return this.res.status(200).json(allMotos);
     } catch (error) {
       this.next(error);
