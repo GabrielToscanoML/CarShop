@@ -1,4 +1,4 @@
-import { Model, Schema, model, models } from 'mongoose';
+import { Model, Schema, UpdateQuery, model, models } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
 export default class CarsODM {
@@ -36,4 +36,35 @@ export default class CarsODM {
   public async findOne(param: string): Promise<ICar | null> {
     return this.model.findOne({ _id: param });
   }
+  public async updateById(id: string, body: ICar): Promise<ICar | null> {
+    return this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...body } as UpdateQuery<ICar>,
+    );
+  }
 }
+
+// // {
+// //   
+// // },
+// { ...body },
+// if (body.status === undefined) {
+//   const carWithStatus = {
+//     ...body,
+//     status: false,
+//   };
+//   console.log('novo carro', carWithStatus);
+//   return this.model.findOneAndUpdate(
+//     { _id: id },
+//     // {
+//     //   model: body.model,
+//     //   year: body.year,
+//     //   color: body.color,
+//     //   status: body.status,
+//     //   buyValue: body.buyValue,
+//     //   doorsQty: body.doorsQty,
+//     //   seatsQty: body.seatsQty,
+//     // },
+//     { ...carWithStatus },
+//   );
+// }
