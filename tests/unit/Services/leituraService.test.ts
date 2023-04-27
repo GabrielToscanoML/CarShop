@@ -21,4 +21,18 @@ describe('Testando se é possível buscar as informações ', function () {
     const result = await motoService.getAllMotos();
     expect(result).to.have.length.greaterThan(0);
   });
+
+  it('Buscando carro por ID', async function () {
+    const carService = new CarService();
+    Sinon.stub(Model, 'findOne').resolves(carsArray[0]);
+    const result = await carService.getCarByID('123456');
+    expect(result).to.be.deep.equal(carsArray[0]);
+  });
+
+  it('Buscando moto por ID', async function () {
+    const motoService = new MotoService();
+    Sinon.stub(Model, 'findOne').resolves(motosArray[1]);
+    const result = await motoService.getMotoByID('654321');
+    expect(result).to.be.deep.equal(motosArray[1]);
+  });
 });
