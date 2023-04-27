@@ -1,5 +1,5 @@
 import { Model, Schema, UpdateQuery, model, models } from 'mongoose';
-import IMotoCycle from '../Interfaces/IMotocycle';
+import IMotoCycle from '../Interfaces/IMotorcycle';
 
 export default class MotosODM {
   private schema: Schema;

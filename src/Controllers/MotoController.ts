@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import IMoto from '../Interfaces/IMotocycle';
+import IMoto from '../Interfaces/IMotorcycle';
 import MotoService from '../Services/MotoService';
 
 class MotoController {
