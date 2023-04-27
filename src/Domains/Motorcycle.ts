@@ -1,8 +1,8 @@
-import IMotoCycle, { Category } from '../Interfaces/IMotorcycle';
+import IMotoCycle from '../Interfaces/IMotorcycle';
 import Vehicle from './Vehicle';
 
 class Motorcycle extends Vehicle {
-  private category: Category;
+  private category: string;
   private engineCapacity: number;
 
   constructor(
@@ -13,7 +13,7 @@ class Motorcycle extends Vehicle {
     this.engineCapacity = moto.engineCapacity;
   }
 
-  public setCategory(category: Category) {
+  public setCategory(category: string) {
     this.category = category;
   }
 
