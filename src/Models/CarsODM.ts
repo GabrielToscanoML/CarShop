@@ -1,11 +1,14 @@
 import { Model, Schema, UpdateQuery, model, models } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+// import VehiclesODM from './AbstractODM';
+// import IVehicle from '../Interfaces/IVehicle';
 
 export default class CarsODM {
   private schema: Schema;
   private model: Model<ICar>;
 
   constructor() {
+    // super(vehicle);
     this.schema = new Schema<ICar>({
       model: { type: String, required: true },
       year: { type: Number, required: true },
@@ -43,28 +46,3 @@ export default class CarsODM {
     );
   }
 }
-
-// // {
-// //   
-// // },
-// { ...body },
-// if (body.status === undefined) {
-//   const carWithStatus = {
-//     ...body,
-//     status: false,
-//   };
-//   console.log('novo carro', carWithStatus);
-//   return this.model.findOneAndUpdate(
-//     { _id: id },
-//     // {
-//     //   model: body.model,
-//     //   year: body.year,
-//     //   color: body.color,
-//     //   status: body.status,
-//     //   buyValue: body.buyValue,
-//     //   doorsQty: body.doorsQty,
-//     //   seatsQty: body.seatsQty,
-//     // },
-//     { ...carWithStatus },
-//   );
-// }
